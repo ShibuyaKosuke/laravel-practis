@@ -1,5 +1,30 @@
 # モデルの追加
 
+```mermaid
+erDiagram
+companies {
+    bigint id
+    varchar name
+    datetime created_at
+    datetime updated_at
+}
+
+users {
+    bigint id
+    bigint company_id
+    varchar name
+    varchar email
+    timestamp email_verified_at
+    varchar password
+    varchar google2fa_secret
+    varchar remember_token
+    datetime created_at
+    datetime updated_at
+}
+
+users }o--|| companies : "company_id:id"
+```
+
 ```bash
 $ sail artisan make:model Company -a
 ```
@@ -22,7 +47,7 @@ https://readouble.com/laravel/10.x/ja/migrations.html
 
 `database/migrations/YYYY_MM_DD_HHMMSS_create_companies_table.php`
 
-```bash
+```php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -58,7 +83,7 @@ return new class extends Migration
 
 `database/migrations/2014_10_12_000000_create_users_table.php`
 
-```bash
+```php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
