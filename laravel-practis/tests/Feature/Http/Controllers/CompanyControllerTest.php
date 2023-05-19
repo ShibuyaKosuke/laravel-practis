@@ -67,6 +67,15 @@ class CompanyControllerTest extends TestCase
         $this->assertDatabaseHas('companies', [
             'name' => $company_name,
         ]);
+
+        // バリデーション
+        $response = $this->actingAs($this->user)
+            ->post($url, [
+                'name' => null,
+            ]);
+
+        $validation = 'nameは必ず指定してください。';
+        $this->get(route('companies.create'))->assertSee($validation);
     }
 
     public function test_show()
@@ -76,9 +85,10 @@ class CompanyControllerTest extends TestCase
         // Guest のときは、login にリダイレクトされる
         $this->get($url)->assertRedirect(route('login'));
 
-        $response = $this->actingAs($this->user)->get($url);
+        $this->actingAs($this->user)->get($url)->assertStatus(200);
 
-        $response->assertStatus(200);
+        // 存在しない ID のときは、404 になる
+        $this->actingAs($this->user)->get(route('companies.show', 9999))->assertStatus(404);
     }
 
     public function test_edit()
