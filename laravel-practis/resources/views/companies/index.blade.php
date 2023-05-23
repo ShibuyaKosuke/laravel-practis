@@ -18,6 +18,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>部署</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                     </tr>
@@ -27,6 +28,7 @@
                         <tr>
                             <td>{{ $company->id }}</td>
                             <td>{{ Html::linkRoute('companies.show', $company->name, compact('company')) }}</td>
+                            <td>{{ Html::linkRoute('companies.sections.index', $company->sections_count ?: 0, compact('company')) }}</td>
                             <td>{{ $company->created_at }}</td>
                             <td>{{ $company->updated_at }}</td>
                         </tr>

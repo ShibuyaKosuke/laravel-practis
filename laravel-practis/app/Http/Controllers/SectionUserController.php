@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSectionUserRequest;
 use App\Models\Section;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class SectionUserController extends Controller
 {
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Section $section, User $user)
+    public function store(StoreSectionUserRequest $request, Section $section)
     {
-        $section->users()->attach($user->id);
+        $section->users()->attach($request->user_id);
 
         $company = $section->company;
 

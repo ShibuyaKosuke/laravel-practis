@@ -55,4 +55,14 @@ class Section extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function unattachedUsers()
+    {
+        return $this->company->users()->whereDoesntHave('sections', function ($query) {
+            $query->where('sections.id', $this->id);
+        });
+    }
 }

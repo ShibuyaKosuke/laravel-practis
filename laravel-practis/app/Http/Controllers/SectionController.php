@@ -48,9 +48,9 @@ class SectionController extends Controller
      */
     public function show(Company $company, Section $section)
     {
-        $this->authorize('view', [Section::class, $company]);
+        $this->authorize('view', [$company, $section]);
 
-        return view('companies.sections.show', compact('section'));
+        return view('companies.sections.show', compact('company', 'section'));
     }
 
     /**
