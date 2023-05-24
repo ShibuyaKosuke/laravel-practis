@@ -48,7 +48,7 @@ class SectionController extends Controller
      */
     public function show(Company $company, Section $section)
     {
-        $this->authorize('view', [$company, $section]);
+        $this->authorize('view', [$section, $company]);
 
         return view('companies.sections.show', compact('company', 'section'));
     }
@@ -58,7 +58,7 @@ class SectionController extends Controller
      */
     public function edit(Company $company, Section $section)
     {
-        $this->authorize('update', [$company, $section]);
+        $this->authorize('update', [$section, $company]);
 
         return view('companies.sections.edit', compact('company', 'section'));
     }
@@ -68,7 +68,7 @@ class SectionController extends Controller
      */
     public function update(UpdateSectionRequest $request, Company $company, Section $section)
     {
-        $this->authorize('update', [$company, $section]);
+        $this->authorize('update', [$section, $company]);
 
         $section->update($request->validated());
 
@@ -80,7 +80,7 @@ class SectionController extends Controller
      */
     public function destroy(Company $company, Section $section)
     {
-        $this->authorize('delete', [$company, $section]);
+        $this->authorize('delete', [$section, $company]);
 
         $section->delete();
 

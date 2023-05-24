@@ -19,7 +19,7 @@ class SectionPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Company $company, Section $section): bool
+    public function view(User $user, Section $section, Company $company): bool
     {
         return $user->company_id === $company->id && $company->id === $section->company_id;
     }
@@ -35,7 +35,7 @@ class SectionPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Company $company, Section $section): bool
+    public function update(User $user, Section $section, Company $company): bool
     {
         return $user->company_id === $company->id && $company->id === $section->company_id;
     }
@@ -43,7 +43,7 @@ class SectionPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Company $company, Section $section): bool
+    public function delete(User $user, Section $section, Company $company): bool
     {
         return $user->company_id === $company->id && $company->id === $section->company_id;
     }
