@@ -65,6 +65,17 @@ class SectionControllerTest extends TestCase
         ]);
     }
 
+    public function test_show()
+    {
+        $section = $this->company->sections()->create(
+            \App\Models\Section::factory()->make()->toArray()
+        );
+
+        $response = $this->actingAs($this->user)->get(route('companies.sections.show', ['company' => $this->company, 'section' => $section]));
+
+        $response->assertStatus(200);
+    }
+
     /**
      * A basic feature test example.
      */
