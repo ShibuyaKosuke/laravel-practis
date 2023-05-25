@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('companies', \App\Http\Controllers\CompanyController::class);
+    Route::resource('companies.sections', \App\Http\Controllers\SectionController::class);
+    Route::resource('sections.users', \App\Http\Controllers\SectionUserController::class)->only(['store', 'destroy']);
 });
 
 require __DIR__.'/auth.php';
