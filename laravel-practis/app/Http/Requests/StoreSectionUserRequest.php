@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property int $user_id
+ */
 class StoreSectionUserRequest extends FormRequest
 {
     /**

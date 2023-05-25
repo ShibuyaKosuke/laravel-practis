@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSectionUserRequest;
 use App\Models\Section;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class SectionUserController extends Controller
 {
