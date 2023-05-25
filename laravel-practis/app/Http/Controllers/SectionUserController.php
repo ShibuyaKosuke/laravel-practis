@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSectionUserRequest;
 use App\Models\Section;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 
 class SectionUserController extends Controller
 {
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(StoreSectionUserRequest $request, Section $section)
+    public function store(StoreSectionUserRequest $request, Section $section): RedirectResponse
     {
         $section->users()->attach($request->user_id);
 
@@ -20,10 +18,7 @@ class SectionUserController extends Controller
         return redirect()->route('companies.sections.show', compact('company', 'section'));
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy(Section $section, User $user)
+    public function destroy(Section $section, User $user): RedirectResponse
     {
         $section->users()->detach($user->id);
 
