@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Models\Company;
 use App\Models\Section;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -10,9 +11,11 @@ use Illuminate\Translation\PotentiallyTranslatedString;
 class SectionUniqueRule implements ValidationRule
 {
     private ?Section $section;
+    private Company $company;
 
-    public function __construct(Section $section = null)
+    public function __construct(Company $company, Section $section = null)
     {
+        $this->company = $company;
         $this->section = $section;
     }
 
@@ -31,7 +34,7 @@ class SectionUniqueRule implements ValidationRule
             })
             ->where([
                 ['name', $value],
-                ['company_id', $this->section->company_id],
+                ['company_id', $this->company->id],
             ])
             ->exists();
 
