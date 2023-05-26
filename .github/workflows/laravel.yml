@@ -51,7 +51,7 @@ jobs:
       - name: yarn run dev
         run: |
           yarn install
-          yarn run
+          yarn build
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
