@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Section;
+use App\Rules\SectionUniqueRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSectionRequest extends FormRequest
@@ -21,8 +23,11 @@ class UpdateSectionRequest extends FormRequest
      */
     public function rules(): array
     {
+        /** @var Section $section */
+        $section = $this->route('section');
+
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', new SectionUniqueRule($section)],
         ];
     }
 }
