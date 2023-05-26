@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+/**
+ * @codeCoverageIgnore
+ */
 class RegisteredUserController extends Controller
 {
     /**

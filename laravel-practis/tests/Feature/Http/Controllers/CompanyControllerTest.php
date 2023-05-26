@@ -70,6 +70,9 @@ class CompanyControllerTest extends TestCase
             'name' => $company_name,
         ]);
 
+        $company = $this->user->refresh()->company;
+        $this->assertEquals($company->id, $this->company->id);
+
         // バリデーション
         $response = $this->actingAs($this->user)
             ->post($url, [

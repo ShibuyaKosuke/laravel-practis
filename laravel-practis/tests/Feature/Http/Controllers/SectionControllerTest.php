@@ -63,6 +63,13 @@ class SectionControllerTest extends TestCase
             'name' => $section_name,
             'company_id' => $this->company->id,
         ]);
+
+        $response = $this->actingAs($this->user)->post(route('companies.sections.store', ['company' => $this->company]), [
+            'name' => $section_name,
+        ]);
+
+        $validation = 'その部署名はすでに登録済みです。';
+        $this->get(route('companies.sections.create', ['company' => $this->company]))->assertSee($validation);
     }
 
     public function test_show()
