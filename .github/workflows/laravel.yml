@@ -60,18 +60,17 @@ jobs:
         run: |
           vendor/bin/phpunit --colors=never --coverage-text=storage/logs/coverage.log
 
-      - name: Sed Coverage Report
-        run: |
-          sed -E "s/"$'\E'"\[([0-9]{1,2}(;[0-9]{1,2})*)?m//g" | \
-          grep "Code Coverage Report:" -A6 storage/logs/coverage.log | \
-          sed -e "s/^ *//" | \
-          sed -e "s/ *$//" | \
-          sed -e "/^ *$/d" > storage/logs/coverage-summary.log | \
-          pwd
-
       - name: Read coverage summary
         id: coverage-summary
         uses: juliangruber/read-file-action@v1
         with:
-          path: /home/runner/work/laravel-practis/laravel-practis/storage/logs/coverage.log
+          path: ./storage/logs/coverage.log
 
+      - name: Comment Coverage Summary
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          header: coverage-summary
+          message: |
+            ## Coverage Summary
+            ${{ steps.coverage-summary.outputs.content }}
