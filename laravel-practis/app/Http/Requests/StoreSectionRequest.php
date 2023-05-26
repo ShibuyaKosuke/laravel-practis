@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Company;
+use App\Rules\SectionUniqueRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSectionRequest extends FormRequest
@@ -21,8 +23,11 @@ class StoreSectionRequest extends FormRequest
      */
     public function rules(): array
     {
+        /** @var Company $company */
+        $company = $this->route('company');
+        
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', new SectionUniqueRule($company)],
         ];
     }
 }
