@@ -69,6 +69,9 @@ jobs:
           sed -e "/^ *$/d" > storage/logs/coverage-summary.log | \
           pwd
 
+      - name: pwd
+        run: pwd
+
       - name: Read coverage summary
         id: coverage-summary
         uses: juliangruber/read-file-action@v1
