@@ -17,8 +17,10 @@ class CompanyControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->companies = Company::factory()->count(20)->create();
-        $this->user = User::factory()->create();
+        $this->company = Company::factory()->create();
+        $this->user = User::factory([
+            'company_id' => $this->company->id,
+        ])->create();
     }
 
     public function test_index()
@@ -80,7 +82,7 @@ class CompanyControllerTest extends TestCase
 
     public function test_show()
     {
-        $url = route('companies.show', $this->companies->random()->first()->id);
+        $url = route('companies.show', $this->company->id);
 
         // Guest のときは、login にリダイレクトされる
         $this->get($url)->assertRedirect(route('login'));
@@ -93,7 +95,7 @@ class CompanyControllerTest extends TestCase
 
     public function test_edit()
     {
-        $company = $this->companies->random()->first();
+        $company = $this->company;
 
         $url = route('companies.edit', $company->id);
 
@@ -108,7 +110,7 @@ class CompanyControllerTest extends TestCase
 
     public function test_update()
     {
-        $company = $this->companies->random()->first();
+        $company = $this->company;
 
         $company_name = $this->faker->company;
 
@@ -136,7 +138,7 @@ class CompanyControllerTest extends TestCase
 
     public function test_destroy()
     {
-        $company = $this->companies->random()->first();
+        $company = $this->company;
 
         $url = route('companies.destroy', $company->id);
 
