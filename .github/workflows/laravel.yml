@@ -48,10 +48,10 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
 
-      - name: npm run dev
+      - name: yarn run dev
         run: |
-          npm install
-          npm run dev
+          yarn install
+          yarn run prod
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
