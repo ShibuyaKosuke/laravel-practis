@@ -11,6 +11,7 @@ use Illuminate\Translation\PotentiallyTranslatedString;
 class SectionUniqueRule implements ValidationRule
 {
     private ?Section $section;
+
     private Company $company;
 
     public function __construct(Company $company, Section $section = null)
@@ -22,9 +23,7 @@ class SectionUniqueRule implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param string $attribute
-     * @param mixed $value
-     * @param \Closure(string): PotentiallyTranslatedString $fail
+     * @param  \Closure(string): PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {

@@ -25,7 +25,7 @@ class StoreSectionRequest extends FormRequest
     {
         /** @var Company $company */
         $company = $this->route('company');
-        
+
         return [
             'name' => ['required', 'string', 'max:255', new SectionUniqueRule($company)],
         ];
