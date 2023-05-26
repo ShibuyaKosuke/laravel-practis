@@ -73,7 +73,7 @@ jobs:
         id: coverage-summary
         uses: juliangruber/read-file-action@v1
         with:
-          path: /home/runner/work/laravel-practis/laravel-practis/storage/logs/coverage-summary.log
+          path: /home/runner/work/laravel-practis/storage/logs/coverage-summary.log
 
       - name: Comment Coverage Summary
         uses: marocchino/sticky-pull-request-comment@v2
