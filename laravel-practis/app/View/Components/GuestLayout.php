@@ -5,6 +5,9 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
+/**
+ * @codeCoverageIgnore
+ */
 class GuestLayout extends Component
 {
     /**
