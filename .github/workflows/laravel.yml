@@ -24,7 +24,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: backend
+        working-directory: laravel-practis
 
     steps:
       - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
